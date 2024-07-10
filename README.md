@@ -24,10 +24,39 @@ yarn tsc --init --outDir dist/ --rootDir src
 yarn tsc --watch
 ```
 
-5. Para ejecutar el código 
+5. Para ejecutar el código (paso opcional, en los siguientes pasos se configurará typescript con nodemon)
 
 ```
 yarn nodemon dist/app.js
 ```
 
-6. 
+En los pasos anteriores se explicó como configurar typescript en Node, a continuación se explicarán los pasos para ejecutar código de typescript directamente en node sin tener que transpilarlo ó configurarlo.
+
+6. Instalamos el siguiente paquete (esto permite ejecutar directamente código de typescript en node, es decir, sin tener que transpilarlo)
+
+```
+yarn add -D ts-node
+```
+
+7. Configuramos el archivo nodemon.json:
+
+```
+{
+    "watch": ["src"],
+    "ext": "ts,json",
+    "ignore": ["src/**/*.spec.ts"],
+    "exec": "ts-node ./src/app.ts"
+}
+```
+8. Instalar rimraf (herramienta que funciona similar al rm -f) eliminar directorio
+
+```
+yarn add -D rimraf
+```
+
+9. Creamos un script para la ejecución de la aplicación:
+
+```
+"build": "rimraf ./dist && tsc",
+"start": "yarn build && node dist/app.js"
+```

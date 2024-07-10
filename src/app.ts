@@ -19,4 +19,4 @@ const heroes = [
 const findHeroById = (idHero: number) => heroes.find(hero => hero.id === idHero);   
 const hero = findHeroById(1);
 
-console.log('HEROOOOEEE', hero);
+console.log('HEROOOOEEE!!!!!', hero);
